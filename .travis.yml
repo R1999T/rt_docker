@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t dockeryoutube -f Dockerfile.dev .
+  - docker build -t rtdocker -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true dockeryoutube npm run test
+  - docker run -e CI=true rtdocker npm run test
 
 deploy:
   provider: elasticbeanstalk
   access_key_id: $ACCESS_KEY_ID
   secret_access_key:
     secure: "$SECRET_ACCESS_KEY"
-  region: "ap-south-1"
-  app: "docker-youtube"
-  env: "DockerYoutube-env"
-  bucket_name: "elasticbeanstalk-ap-south-1-345800986069"
-  bucket_path: "docker-youtube"
+  region: "us-east-1"
+  app: "rtdocker-apk"
+  env: "Rtdockerapk-env"
+  bucket_name: "elasticbeanstalk-us-east-1-684343307429"
+  bucket_path: "rtdocker-apk" 
   on:
     branch: master
